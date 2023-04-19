@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="myCanvas" height="180px" width="250px" style="border: 1px solid white"></canvas>
+</body>
+</html>
+
+<script>
+    class rectangle{
+        constructor(height,width) {
+            this.height = height;
+            this.width = width;
+        }
+        area (){
+            return this.height * this.width
+        }
+        cv(){
+            return (this.height + this.width) * 2
+        }
+
+    }
+    let Rectangle = new rectangle(12,20)
+    let Area = Rectangle.area();
+    let Cv = Rectangle.cv();
+    let width = Rectangle.width
+    let height = Rectangle.height
+    document.write("Chu vi hình chữ nhật là" +Cv + "<br>"+
+        "Diện tích hình chữ nhật là" +Area)
+
+    function display(){
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        ctx.fillStyle = '#299';
+        ctx.fillRect(width,height,140,160)
+
+    }
+
+    display();
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border: 1px solid #d3d3d3"></canvas>
+</body>
+</html>
+
+<script>
+  function Circle(x,y,radius){
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+  }
+
+  function getRandomColor(){
+      let red = getRamdomHex();
+      let green = getRamdomHex();
+      let blue = getRamdomHex();
+      return "rgb(" +red + "," + blue + "," + green + ")";
+  }
+
+  function getRamdomHex(){
+    return Math.floor(Math.random()* 255);
+  }
+  function createCircle(){
+    let ctx = document.getElementById("myCanvas").getContext("2d");
+    let radius = Math.floor(Math.random()* 80);
+    let color = getRandomColor();
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+    let circle = new Circle(x,y,radius);
+    // phương thức beginPath được dùng để bắt đầu vẽ mọt đường mới trên đối tuượng canvas
+    ctx.beginPath();
+    // Trong lập trình Javascript, arc() là một phương thức của đối tượng bối cảnh vẽ (canvas context) được sử dụng để vẽ một đường tròn hoặc cung tròn trên đối tượng canvas.
+    //  Cú pháp của phương thức arc() như sau:
+    //  x và y là tọa độ của tâm đường tròn.
+    // radius là bán kính của đường tròn.
+    // startAngle là góc bắt đầu của đường cung, được đo bằng đơn vị radian, mặc định là 0.
+    // endAngle là góc kết thúc của đường cung, được đo bằng đơn vị radian, mặc định là 2π (tương đương với vẽ một đường tròn đầy đủ).
+    // anticlockwise là một giá trị Boolean, xác định hướng vẽ của đường cung. Nếu giá trị này là true, đường cung sẽ được vẽ ngược chiều kim đồng hồ; nếu giá trị là false (mặc định), đường cung sẽ được vẽ theo chiều kim đồng hồ.
+    ctx.arc(circle.x, circle.y,circle.radius, 0 , 2 * Math.PI )
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  function createMultipleCircle(){
+      for(let i = 0; i < 30; i++){
+          createCircle()
+      }
+  }
+
+  createMultipleCircle();
+</script>
